@@ -13,12 +13,14 @@ module MathGame
       puts "\nNEW TURN ----------------------------------Player #{@player.player_number}"
       puts "#{question.question_text}"
       question.answer_given = $stdin.gets.chomp.to_i
-      stats = "#{@player.correct_answers}/#{@player.questions_answered}"
+      lives_stats = "#{@player.lives_remaining} of #{@player.lives} lives remaining"
+      stats = "#{@player.correct_answers}/#{@player.questions_answered} questions answered correctly"
       if question.correct? then
-        puts "Hurray, you got it right. #{stats}"
+        puts 'Hurray, you got it right.'
       else
-        puts "Boo, you got it wrong.  #{stats}"
+        puts 'Boo, you got it wrong.'
       end
+      puts "#{lives_stats} | #{stats}"
       puts "Sorry player #{@player.player_number} YOU'RE DEAD.\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" unless @player.alive?
     end
   end

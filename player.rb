@@ -1,7 +1,7 @@
 module MathGame
   class Player
 
-    attr_reader :player_number
+    attr_reader(:player_number, :lives)
 
     def initialize(player_number, lives)
       @player_number = player_number
@@ -17,8 +17,16 @@ module MathGame
       @questions.length
     end
 
+    def incorrect_answers
+      self.questions_answered - self.correct_answers
+    end
+
+    def lives_remaining
+      @lives - self.incorrect_answers
+    end
+
     def alive?
-      self.questions_answered - self.correct_answers < @lives
+      self.lives_remaining > 0
     end
 
     def add_question(question)
