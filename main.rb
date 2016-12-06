@@ -1,4 +1,4 @@
 require './game'
 
-game = Game.new
+game = MathGame::Game.new
 game.play
