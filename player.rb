@@ -8,11 +8,19 @@ class Player
     @questions = []
   end
 
-  def hit
-    @lives -= 1
+  def correct_answers
+    @questions.count {|q| q.correct?}
+  end
+
+  def questions_answered
+    @questions.length
   end
 
   def alive?
-    @lives > 0
+    self.questions_answered - self.correct_answers < @lives
+  end
+
+  def add_question(question)
+    @questions << question
   end
 end

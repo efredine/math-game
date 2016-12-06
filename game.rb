@@ -10,12 +10,18 @@ class Game
   end
 
   def play
-    while @players.length > 1 do
-      surviving_players = @players.select do |player|
+    surviving_players = @players
+    while surviving_players.length > 1 do
+      surviving_players = surviving_players.select do |player|
         Turn.new(player).play
         player.alive?
       end
-      @players = surviving_players
+    end
+    puts '*********************************************************'
+    if surviving_players.length > 0 then
+      puts "\nPlayer #{surviving_players.first.player_number} WON!!!!\n"
+    else
+      puts 'Nobody won!'
     end
   end
 end
